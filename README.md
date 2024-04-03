@@ -1,0 +1,27 @@
+Use only the following standard Lisp functions, macros, operators, and constants in your definitions, along with any previously completed functions in this project:
+
+    - T
+    - NIL
+    - IF
+    - WHEN
+    - COND
+    - NOT
+    - AND
+    - OR
+    - EQUAL
+    - CONS
+    - LIST
+    - CAR
+    - CDR
+    - FIRST
+    - SECOND
+    - THIRD
+    - LENGTH
+    - DEFUN
+    - LABELS
+    - LET
+    - LET*
+    - FUNCALL
+    - QUOTE
+    - any arithmetic operator or relation (+, -, *, /, <, <=, >, >=, =)
+    - any numerical constant
