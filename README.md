@@ -22,6 +22,6 @@ Use only the following standard Lisp functions, macros, operators, and constants
     - LET 
     - LET*      -> use variables that depend on options
     - FUNCALL   -> applies function to arguments ?
-    - QUOTE     -> https://stackoverflow.com/questions/134887/when-to-use-or-quote-in-lisp
+    - QUOTE     -> pass arguments to function as exact: https://stackoverflow.com/questions/134887/when-to-use-or-quote-in-lisp
     - any arithmetic operator or relation (+, -, *, /, <, <=, >, >=, =)
     - any numerical constant
