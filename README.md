@@ -12,7 +12,7 @@ Use only the following standard Lisp functions, macros, operators, and constants
     - CONS      -> add element to front of list. ex: (cons 1 '(2 3 4)) returns (1 2 3 4)
     - LIST      -> constructs a list from given args
     - CAR       -> grab first element in list, throws error if empty or not list
-    - CDR       -> grab last elemtn in list, throws error if empty or not list
+    - CDR       -> grab last element in list, throws error if empty or not list
     - FIRST     -> access first element of list/vector/...sequence? 
     - SECOND
     - THIRD
