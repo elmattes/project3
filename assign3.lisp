@@ -105,8 +105,6 @@
 ;;  (boolean-implies nil nil) => t
 
 (defun boolean-implies (a b)
-  ;;if a == NIL b can be T or NIL
-  ;;if a == T b can ONLY be T
   (cond
     ((not a) T)   ;; if a = NIL, return T
     (b T)         ;; if a = T and B = T, return T
