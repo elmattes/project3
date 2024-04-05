@@ -105,9 +105,12 @@
 ;;  (boolean-implies nil nil) => t
 
 (defun boolean-implies (a b)
-
-  ;;<Your implementation go here >
-
+  ;;if a == NIL b can be T or NIL
+  ;;if a == T b can ONLY be T
+  (cond
+    ((not a) T)   ;; if a = NIL, return T
+    (b T)         ;; if a = T and B = T, return T
+    (T NIL))      ;; if a = T and B = NIL, return NIL
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -149,12 +152,19 @@
   )
 
 (defun test-case ()
-  (format t "XOR Test case 1: ~x~%" (boolean-xor T NIL))
-  (format t "XOR Test case 2: ~x~%" (boolean-xor T T))
-  (format t "XOR Test case 3: ~x~%" (boolean-xor NIL NIL))
-  (format t "XOR Test case 4: ~x~%" (boolean-xor NIL T))
-  (format t "IFF Test case 1: ~x~%" (boolean-iff T T))
-  (format t "IFF Test case 2: ~x~%" (boolean-iff NIL NIL))
-  (format t "IFF Test case 3: ~x~%" (boolean-iff T NIL))
-  (format t "IFF Test case 4: ~x~%" (boolean-iff NIL T))
+  (format t "~%========= testing XOR =========~%")
+  (format t "XOR Test case 1 (T): ~x~%" (boolean-xor T NIL))
+  (format t "XOR Test case 2 (T): ~x~%" (boolean-xor NIL T))
+  (format t "XOR Test case 3 (F): ~x~%" (boolean-xor T T))
+  (format t "XOR Test case 4 (F): ~x~%" (boolean-xor NIL NIL))
+  (format t "~%========= testing IFF =========~%")
+  (format t "IFF Test case 1 (T): ~x~%" (boolean-iff T T))
+  (format t "IFF Test case 2 (T): ~x~%" (boolean-iff NIL NIL))
+  (format t "IFF Test case 3 (F): ~x~%" (boolean-iff T NIL))
+  (format t "IFF Test case 4 (F): ~x~%" (boolean-iff NIL T))
+  (format t "~%========= testing IMPLIES  =========~%")
+  (format t "IMPLIES Test case 1 (T): ~x~%" (boolean-implies NIL NIL))
+  (format t "IMPLIES Test case 2 (T): ~x~%" (boolean-implies NIL T))
+  (format t "IMPLIES Test case 3 (T): ~x~%" (boolean-implies T T))
+  (format t "IMPLIES Test case 4 (F): ~x~%" (boolean-implies T NIL))
   )
