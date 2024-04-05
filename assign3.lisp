@@ -150,7 +150,7 @@
 
     ;; not case
     ;; check if first part of exp reads "not", then eval last input with not
-    ;; this  won't work in a nested expression though
+    ;; this may or may not work in a nested expression
     ((equal (car exp) 'not) (not (boolean-eval (cadr exp))))
 
     
