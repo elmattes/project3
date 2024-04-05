@@ -87,9 +87,6 @@
 ;;  (boolean-xor nil nil) => nil
 
 (defun boolean-xor (a b)
-  ;; print debugger section
-  ;;(format t "value a = ~a~%" a)
-  ;;(format t "value b = ~b~%" b)
   (if  (equal a b)
        NIL
        T)
@@ -126,9 +123,9 @@
 ;;  (boolean-iff nil nil) => t
 
 (defun boolean-iff (a b)
-
-  ;;<Your implementation go here >
-
+  (if (equal a b)
+      T
+      NIL)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -152,8 +149,12 @@
   )
 
 (defun test-case ()
-  (format t "Test case 1: ~x~%" (boolean-xor T NIL))
-  (format t "Test case 2: ~x~%" (boolean-xor T T))
-  (format t "Test case 3: ~x~%" (boolean-xor NIL NIL))
-  (format t "Test case 4: ~x~%" (boolean-xor NIL T))
+  (format t "XOR Test case 1: ~x~%" (boolean-xor T NIL))
+  (format t "XOR Test case 2: ~x~%" (boolean-xor T T))
+  (format t "XOR Test case 3: ~x~%" (boolean-xor NIL NIL))
+  (format t "XOR Test case 4: ~x~%" (boolean-xor NIL T))
+  (format t "IFF Test case 1: ~x~%" (boolean-iff T T))
+  (format t "IFF Test case 2: ~x~%" (boolean-iff NIL NIL))
+  (format t "IFF Test case 3: ~x~%" (boolean-iff T NIL))
+  (format t "IFF Test case 4: ~x~%" (boolean-iff NIL T))
   )
