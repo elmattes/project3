@@ -144,10 +144,23 @@
 ;;  (boolean-eval '(and t (or nil t)) => t
 
 (defun boolean-eval (exp)
+  (cond
+    ;; base case: make sure exp is either T or NIL
+    ((or (equal exp T) (equal exp NIL)) exp)
 
-  ;;<Your implementation go here >
+    ;; not case
+    ;; check if first part of exp reads "not", then eval last input with not
+    ;; this  won't work in a nested expression though
+    ((equal (car exp) 'not) (not (boolean-eval (cadr exp))))
 
-  )
+    
+    ;;heres what i'm thinking
+    ;;need to recursively call boolean-eval each time an open paren is read
+    ;;when calling bool-eval, read first argument for and/not/xor etc
+    ;;if not a operand, compare arguments per operand
+    
+  )   
+)
 
 (defun test-case ()
   ;; uncomment out cases when the implimentation is there
@@ -163,24 +176,25 @@
   ;;(format t "set-diff Test case {1}: ~x~%" (set-diff '(1 2) '(2 4)))
   
   ;; current working test cases
-  (format t "~%========= test XOR =========~%")
-  (format t "XOR Test case 1 (T): ~x~%" (boolean-xor T NIL))
-  (format t "XOR Test case 2 (T): ~x~%" (boolean-xor NIL T))
-  (format t "XOR Test case 3 (NIL): ~x~%" (boolean-xor T T))
-  (format t "XOR Test case 4 (NIL): ~x~%" (boolean-xor NIL NIL))
-  (format t "~%========= test IFF =========~%")
-  (format t "IFF Test case 1 (T): ~x~%" (boolean-iff T T))
-  (format t "IFF Test case 2 (T): ~x~%" (boolean-iff NIL NIL))
-  (format t "IFF Test case 3 (NIL): ~x~%" (boolean-iff T NIL))
-  (format t "IFF Test case 4 (NIL): ~x~%" (boolean-iff NIL T))
-  (format t "~%========= test IMPLIES  =========~%")
-  (format t "IMPLIES Test case 1 (T): ~x~%" (boolean-implies NIL NIL))
-  (format t "IMPLIES Test case 2 (T): ~x~%" (boolean-implies NIL T))
-  (format t "IMPLIES Test case 3 (T): ~x~%" (boolean-implies T T))
-  (format t "IMPLIES Test case 4 (NIL): ~x~%" (boolean-implies T NIL))
+  ;;(format t "~%========= test XOR =========~%")
+  ;;(format t "XOR Test case 1 (T): ~x~%" (boolean-xor T NIL))
+  ;;(format t "XOR Test case 2 (T): ~x~%" (boolean-xor NIL T))
+  ;;(format t "XOR Test case 3 (NIL): ~x~%" (boolean-xor T T))
+  ;;(format t "XOR Test case 4 (NIL): ~x~%" (boolean-xor NIL NIL))
+  ;;(format t "~%========= test IFF =========~%")
+  ;;(format t "IFF Test case 1 (T): ~x~%" (boolean-iff T T))
+  ;;(format t "IFF Test case 2 (T): ~x~%" (boolean-iff NIL NIL))
+  ;;(format t "IFF Test case 3 (NIL): ~x~%" (boolean-iff T NIL))
+  ;;(format t "IFF Test case 4 (NIL): ~x~%" (boolean-iff NIL T))
+  ;;(format t "~%========= test IMPLIES  =========~%")
+  ;;(format t "IMPLIES Test case 1 (T): ~x~%" (boolean-implies NIL NIL))
+  ;;(format t "IMPLIES Test case 2 (T): ~x~%" (boolean-implies NIL T))
+  ;;(format t "IMPLIES Test case 3 (T): ~x~%" (boolean-implies T T))
+  ;;(format t "IMPLIES Test case 4 (NIL): ~x~%" (boolean-implies T NIL))
 
-  ;; no implimentation yet
-  ;;(format t "~%========= test EVAL =========~%")
+  (format t "~%========= test EVAL =========~%")
+  (format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
+  (format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
   ;;(format t "EVAL Test case 1 (T): ~x~%" (boolean-eval '(and t (or nil t))))
   ;;(format t "EVAL Test case 2 (NIL): ~x~%" (boolean-eval '(and t nil)))
   )
