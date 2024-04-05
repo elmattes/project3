@@ -9,7 +9,7 @@ Use only the following standard Lisp functions, macros, operators, and constants
     - AND       -> returns nil if any of the inputs are nil, or value of last
     - OR        -> returns first non-nil value found, or value of last
     - EQUAL     -> T iff identical type and object? (NOTE: equal not eq)
-    - CONS
+    - CONS      -> add element to front of list. ex: (cons 1 '(2 3 4)) returns (1 2 3 4)
     - LIST      -> constructs a list from given args
     - CAR       -> grab first element in list, throws error if empty or not list
     - CDR       -> grab last elemtn in list, throws error if empty or not list
