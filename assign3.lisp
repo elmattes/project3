@@ -180,7 +180,7 @@
   (format t "IMPLIES Test case 4 (F): ~x~%" (boolean-implies T NIL))
 
   ;; no implimentation yet
-  ;;(format t "~%========= test bool-eval =========~%")
-  ;;(format t "bool eval Test case 1 (T): ~x~%" (boolean-eval '(and t (or nil t))))
-  ;;(format t "bool eval Test case 2 (NIL): ~x~%" (boolean-eval '(and t nil)))
+  ;;(format t "~%========= test EVAL =========~%")
+  ;;(format t "EVAL Test case 1 (T): ~x~%" (boolean-eval '(and t (or nil t))))
+  ;;(format t "EVAL Test case 2 (F): ~x~%" (boolean-eval '(and t nil)))
   )
