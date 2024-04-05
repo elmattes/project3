@@ -10,13 +10,13 @@ Use only the following standard Lisp functions, macros, operators, and constants
     - OR        -> returns first non-nil value found, or value of last
     - EQUAL     -> T iff identical type and object? (NOTE: equal not eq)
     - CONS
-    - LIST
-    - CAR
-    - CDR
-    - FIRST     -> access first element of list
-    - SECOND    -> etc..
+    - LIST      -> constructs a list from given args
+    - CAR       -> grab first element in list, throws error if empty or not list
+    - CDR       -> grab last elemtn in list, throws error if empty or not list
+    - FIRST     -> access first element of list/vector/...sequence? 
+    - SECOND
     - THIRD
-    - LENGTH    -> computes length of vector/string/list (but can get fucked up on lists)
+    - LENGTH    -> computes length of vector/string/list
     - DEFUN
     - LABELS    -> allow recursion? https://stackoverflow.com/questions/7381491/use-of-labels-in-common-lisp
     - LET 
