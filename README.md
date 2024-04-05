@@ -22,6 +22,6 @@ Use only the following standard Lisp functions, macros, operators, and constants
     - LET       -> variables bound all at once 
     - LET*      -> variables bound sequentially, used when referencing previous bindings? i'm not sure
     - FUNCALL   -> call function with arguments. ex: (funcall #'iff T T))         use in eval maybe?
-    - QUOTE     -> pass arguments to function as exact: https://stackoverflow.com/questions/134887/when-to-use-or-quote-in-lisp
+    - QUOTE     -> pass arguments to function as exact, or read (expression) without treating it as a function: https://stackoverflow.com/questions/134887/when-to-use-or-quote-in-lisp
     - any arithmetic operator or relation (+, -, *, /, <, <=, >, >=, =)
     - any numerical constant
