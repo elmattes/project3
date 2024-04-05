@@ -19,8 +19,8 @@ Use only the following standard Lisp functions, macros, operators, and constants
     - LENGTH    -> computes length of vector/string/list
     - DEFUN
     - LABELS    -> allow recursion? https://stackoverflow.com/questions/7381491/use-of-labels-in-common-lisp
-    - LET 
-    - LET*      -> use variables that depend on options
+    - LET       -> variables bound all at once 
+    - LET*      -> variables bound sequentially, used when referencing previous bindings? i'm not sure
     - FUNCALL   -> applies function to arguments ?
     - QUOTE     -> pass arguments to function as exact: https://stackoverflow.com/questions/134887/when-to-use-or-quote-in-lisp
     - any arithmetic operator or relation (+, -, *, /, <, <=, >, >=, =)
