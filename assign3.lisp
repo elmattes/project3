@@ -11,9 +11,10 @@
 ;;  (set-member '(1 2) 3) =>  NIL
 
 (defun set-member (set item)
-
-  ;;Your implementation go here
-
+  (cond
+    ((null set) NIL)                      ;; base case - empty
+    ((or (equal (car set) item)           ;; check if first item matches
+         (set-member (cdr set) item))))   ;; recursively check rest of list
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -90,7 +91,7 @@
   (if  (equal a b)
        NIL
        T)
-  )
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -109,7 +110,7 @@
     ((not a) T)   ;; if a = NIL, return T
     (b T)         ;; if a = T and B = T, return T
     (T NIL))      ;; if a = T and B = NIL, return NIL
-  )
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -165,9 +166,9 @@
 (defun test-case ()
   ;; uncomment out cases when the implimentation is there
   ;; NOTE i haven't confirmed that the print formating is actually correct, double check later
-  ;;(format t "~%========= test set-member =========~%")
-  ;;(format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
-  ;;(format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))  
+  (format t "~%========= test set-member =========~%")
+  (format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
+  (format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))  
   ;;(format t "~%========= test set-union =========~%")
   ;;(format t "set-union Test case {1 2 4}: ~x~%" (set-union '(1 2) '(2 4)))
   ;;(format t "~%========= test set-intersection =========~%")
@@ -192,9 +193,9 @@
   ;;(format t "IMPLIES Test case 3 (T): ~x~%" (boolean-implies T T))
   ;;(format t "IMPLIES Test case 4 (NIL): ~x~%" (boolean-implies T NIL))
 
-  (format t "~%========= test EVAL =========~%")
-  (format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
-  (format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
+  ;;(format t "~%========= test EVAL =========~%")
+  ;;(format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
+  ;;(format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
   ;;(format t "EVAL Test case 1 (T): ~x~%" (boolean-eval '(and t (or nil t))))
   ;;(format t "EVAL Test case 2 (NIL): ~x~%" (boolean-eval '(and t nil)))
   )
