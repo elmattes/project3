@@ -12,7 +12,7 @@
 
 (defun set-member (set item)
   (cond
-    ((null set) NIL)                      ;; base case - empty
+    ((= (length set) 0) nil)              ;; base case - empty set
     ((or (equal (car set) item)           ;; check if first item matches
          (set-member (cdr set) item))))   ;; recursively check rest of list
   )
