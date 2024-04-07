@@ -164,29 +164,31 @@
 )
 
 (defun test-case ()
-  ;; uncomment out cases when the implimentation is there
-  ;; NOTE i haven't confirmed that the print formating is actually correct, double check later
   (format t "~%========= test set-member =========~%")
   (format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
-  (format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))  
+  (format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))
+  
   ;;(format t "~%========= test set-union =========~%")
   ;;(format t "set-union Test case {1 2 4}: ~x~%" (set-union '(1 2) '(2 4)))
+  
   ;;(format t "~%========= test set-intersection =========~%")
   ;;(format t "set-intersection Test case {2}: ~x~%" (set-intersection '(1 2) '(2 4)))
+  
   ;;(format t "~%========= test set-diff =========~%")
   ;;(format t "set-diff Test case {1}: ~x~%" (set-diff '(1 2) '(2 4)))
   
-  ;; current working test cases
   ;;(format t "~%========= test XOR =========~%")
   ;;(format t "XOR Test case 1 (T): ~x~%" (boolean-xor T NIL))
   ;;(format t "XOR Test case 2 (T): ~x~%" (boolean-xor NIL T))
   ;;(format t "XOR Test case 3 (NIL): ~x~%" (boolean-xor T T))
   ;;(format t "XOR Test case 4 (NIL): ~x~%" (boolean-xor NIL NIL))
+  
   ;;(format t "~%========= test IFF =========~%")
   ;;(format t "IFF Test case 1 (T): ~x~%" (boolean-iff T T))
   ;;(format t "IFF Test case 2 (T): ~x~%" (boolean-iff NIL NIL))
   ;;(format t "IFF Test case 3 (NIL): ~x~%" (boolean-iff T NIL))
   ;;(format t "IFF Test case 4 (NIL): ~x~%" (boolean-iff NIL T))
+  
   ;;(format t "~%========= test IMPLIES  =========~%")
   ;;(format t "IMPLIES Test case 1 (T): ~x~%" (boolean-implies NIL NIL))
   ;;(format t "IMPLIES Test case 2 (T): ~x~%" (boolean-implies NIL T))
