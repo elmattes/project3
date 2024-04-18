@@ -149,6 +149,12 @@
     ;; base case: make expression is a boolean
     ((or (equal exp T) (equal exp NIL)) exp)
 
+    ;; not case
+    ((equal (car exp) 'not)
+	    (if (or (equal (second exp) T) (equal (second exp) NIL))
+		(not (second exp))
+		(not (boolean-eval (cadr exp)))))
+
     ;; and case
     ((equal (car exp) 'and)
 	    (if (or (equal (third exp) T) (equal (third exp) NIL))
@@ -191,16 +197,18 @@
   ;;(format t "IMPLIES Test case 3 (T): ~x~%" (boolean-implies T T))
   ;;(format t "IMPLIES Test case 4 (NIL): ~x~%" (boolean-implies T NIL))
 
-  ;;(format t "~%========= test EVAL =========~%")
+  ;;(format t "~%========= test BOOL-EVAL =========~%")
   ;;(format t "EVAL BASE CASE (NIL): ~x~%" (boolean-eval '(no valid entry)))
-  ;;(format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
-  ;;(format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
-  (format t "AND Test case 1 (T): ~x~%" (boolean-eval '(and T T)))
-  (format t "AND Test case 2 (NIL): ~x~%" (boolean-eval '(and NIL NIL)))
-  (format t "AND Test case 3 (NIL): ~x~%" (boolean-eval '(and T NIL)))
-  (format t "AND Test case 4 (NIL): ~x~%" (boolean-eval '(and NIL T)))
-  (format t "NESTED AND Test 1 (T): ~x~%" (boolean-eval '(and (and T T) (and NIL NIL))))
-  (format t "NESTED AND Test 2 (NIL): ~x~%" (boolean-eval '(and (and NIL T) (and NIL NIL))))
+  (format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
+  (format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
+  (format t "NESTED NOT Test 1 (T): ~x~%" (boolean-eval '(not (not T))))
+  (format t "NESTED NOT Test 2 (NIL): ~x~%" (boolean-eval '(not (not NIL))))
+  ;;(format t "AND Test case 1 (T): ~x~%" (boolean-eval '(and T T)))
+  ;;(format t "AND Test case 2 (NIL): ~x~%" (boolean-eval '(and NIL NIL)))
+  ;;(format t "AND Test case 3 (NIL): ~x~%" (boolean-eval '(and T NIL)))
+  ;;(format t "AND Test case 4 (NIL): ~x~%" (boolean-eval '(and NIL T)))
+  ;;(format t "NESTED AND Test 1 (T): ~x~%" (boolean-eval '(and (and T T) (and NIL NIL))))
+  ;;(format t "NESTED AND Test 2 (NIL): ~x~%" (boolean-eval '(and (and NIL T) (and NIL NIL))))
   ;;(format t "OR Test case 1 (T): ~x~%" (boolean-eval '(or T NIL)))
   ;;(format t "OR Test case 2 (T): ~x~%" (boolean-eval '(or NIL T)))
   ;;(format t "OR Test case 3 (NIL): ~x~%" (boolean-eval '(and NIL NIL)))
