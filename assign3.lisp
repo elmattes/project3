@@ -151,8 +151,8 @@
 
     ;; and case
     ((equal (car exp) 'and)
-	    (if (equal (third exp) (or T NIL))
-		(and (cadr exp))
+	    (if (or (equal (second exp) T) (equal (second exp) NIL))
+		(and (second exp) (third exp))
 		(and (boolean-eval (cadr exp)))))
 		
     
@@ -192,13 +192,15 @@
   ;;(format t "IMPLIES Test case 4 (NIL): ~x~%" (boolean-implies T NIL))
 
   ;;(format t "~%========= test EVAL =========~%")
-  ;;(format t "EVAL BASE CASE (NIL): ~x~%" (boolean-eval '(fart)))
+  ;;(format t "EVAL BASE CASE (NIL): ~x~%" (boolean-eval '(no valid entry)))
   ;;(format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
   ;;(format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
-  (format t "AND Test case 1 (T): ~x~%" (boolean-eval '(and T T)))
-  (format t "AND Test case 2 (T): ~x~%" (boolean-eval '(and NIL NIL)))
+  (format t "AND Test case 1 (T): ~x~%" (boolean-eval '(and NIL NIL)))
+  (format t "AND Test case 2 (T): ~x~%" (boolean-eval '(and T T)))
   (format t "AND Test case 3 (NIL): ~x~%" (boolean-eval '(and T NIL)))
   (format t "AND Test case 4 (NIL): ~x~%" (boolean-eval '(and NIL T)))
+  (format t "NESTED AND Test 1 (T): ~x~%" (boolean-eval '(and (and T T) (and NIL NIL))))
+  (format t "NESTED AND Test 2 (NIL): ~x~%" (boolean-eval '(and (and NIL T) (and NIL NIL))))
   ;;(format t "OR Test case 1 (T): ~x~%" (boolean-eval '(or T NIL)))
   ;;(format t "OR Test case 2 (T): ~x~%" (boolean-eval '(or NIL T)))
   ;;(format t "OR Test case 3 (NIL): ~x~%" (boolean-eval '(and NIL NIL)))
