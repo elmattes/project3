@@ -263,7 +263,10 @@
   ;;(format t "NESTED IMPLIES Test 1 (T): ~x~%" (boolean-eval '(implies (implies NIL NIL) (implies T T))))
   ;;(format t "NESTED IMPLIES Test 2 (NIL): ~x~%" (boolean-eval '(implies (implies NIL NIL) (implies T NIL))))
  
-  ;;(format t "EVAL COMBO Test 1 (T): ~x~%" (boolean-eval '(and t (or nil t))))
-  ;;(format t "EVAL COMBO Test 2 (NIL): ~x~%" (boolean-eval '(and t nil)))
-  ;;(format t "EVAL COMBO Test 3 (T): ~x~%" (boolean-eval '(not (and t nil))))
+  (format t "EVAL COMBO Test 1 (T): ~x~%" (boolean-eval '(and t (or NIL T))))
+  (format t "EVAL COMBO Test 2 (NIL): ~x~%" (boolean-eval '(and T NIL)))
+  (format t "EVAL COMBO Test 3 (T): ~x~%" (boolean-eval '(not (and T NIL))))
+  (format t "EVAL COMBO Test 4 (T): ~x~%" (boolean-eval '(xor (or T T) (and T NIL))))
+  (format t "EVAL COMBO Test 5 (T): ~x~%" (boolean-eval '(implies (and T T) (not NIL))))
+  (format t "EVAL COMBO Test 6 (NIL): ~x~%" (boolean-eval '(iff (xor T T) (and T T))))
   )
