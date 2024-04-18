@@ -160,7 +160,30 @@
 	    (if (or (equal (third exp) T) (equal (third exp) NIL))
 		(and (second exp) (third exp))
 		(and (boolean-eval (cadr exp)))))
-		
+
+    ;;or case
+    ((equal (car exp) 'or)
+	    (if (or (equal (third exp) T) (equal (third exp) NIL))
+		(or (second exp) (third exp))
+		(or (boolean-eval (cadr exp)))))
+
+    ;;xor case
+    ((equal (car exp) 'xor)
+	    (if (or (equal (third exp) T) (equal (third exp) NIL))
+		(funcall #'boolean-xor (second exp) (third exp))
+		(boolean-eval (cadr exp))))
+
+    ;;iff case
+    ((equal (car exp) 'iff)
+	    (if (or (equal (third exp) T) (equal (third exp) NIL))
+		(funcall #'boolean-iff (second exp) (third exp))
+		(boolean-eval (cadr exp))))    
+
+    ;;implies case
+    ((equal (car exp) 'implies)
+	    (if (or (equal (third exp) T) (equal (third exp) NIL))
+		(funcall #'boolean-implies (second exp) (third exp))
+		(boolean-eval (cadr exp))))    
     
   )   
 )
