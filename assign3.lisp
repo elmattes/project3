@@ -146,27 +146,23 @@
 
 (defun boolean-eval (exp)
   (cond
-    ;; base case: make sure exp is either T or NIL
+    ;; base case: make expression is a boolean
     ((or (equal exp T) (equal exp NIL)) exp)
 
-    ;; not case
-    ;; check if first part of exp reads "not", then eval last input with not
-    ;; this may or may not work in a nested expression
-    ((equal (car exp) 'not) (not (boolean-eval (cadr exp))))
-
-    
-    ;;heres what i'm thinking
-    ;;need to recursively call boolean-eval each time an open paren is read
-    ;;when calling bool-eval, read first argument for and/not/xor etc
-    ;;if not a operand, compare arguments per operand
+    ;; and case
+    ((equal (car exp) 'and)
+	    (if (equal (third exp) (or T NIL))
+		(and (cadr exp))
+		(and (boolean-eval (cadr exp)))))
+		
     
   )   
 )
 
 (defun test-case ()
-  (format t "~%========= test set-member =========~%")
-  (format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
-  (format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))
+  ;;(format t "~%========= test set-member =========~%")
+  ;;(format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
+  ;;(format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))
   
   ;;(format t "~%========= test set-union =========~%")
   ;;(format t "set-union Test case {1 2 4}: ~x~%" (set-union '(1 2) '(2 4)))
@@ -196,8 +192,20 @@
   ;;(format t "IMPLIES Test case 4 (NIL): ~x~%" (boolean-implies T NIL))
 
   ;;(format t "~%========= test EVAL =========~%")
+  ;;(format t "EVAL BASE CASE (NIL): ~x~%" (boolean-eval '(fart)))
   ;;(format t "NOT Test case 1 (T): ~x~%" (boolean-eval '(not NIL)))
   ;;(format t "NOT Test case 2 (NIL): ~x~%" (boolean-eval '(not T)))
+  (format t "AND Test case 1 (T): ~x~%" (boolean-eval '(and T T)))
+  (format t "AND Test case 2 (T): ~x~%" (boolean-eval '(and NIL NIL)))
+  (format t "AND Test case 3 (NIL): ~x~%" (boolean-eval '(and T NIL)))
+  (format t "AND Test case 4 (NIL): ~x~%" (boolean-eval '(and NIL T)))
+  ;;(format t "OR Test case 1 (T): ~x~%" (boolean-eval '(or T NIL)))
+  ;;(format t "OR Test case 2 (T): ~x~%" (boolean-eval '(or NIL T)))
+  ;;(format t "OR Test case 3 (NIL): ~x~%" (boolean-eval '(and NIL NIL)))
+  ;;(format t "OR Test case 4 (NIL): ~x~%" (boolean-eval '(and T T)))
+
+  
   ;;(format t "EVAL Test case 1 (T): ~x~%" (boolean-eval '(and t (or nil t))))
   ;;(format t "EVAL Test case 2 (NIL): ~x~%" (boolean-eval '(and t nil)))
+  ;;(format t "EVAL Test case 3 (T): ~x~%" (boolean-eval '(not (and t nil))))
   )
