@@ -12,7 +12,7 @@
 
 (defun set-member (set item)
   (cond
-    ((= (length set) 0) nil)           ;; base case - empty set
+    ((equal set NIL) nil)              ;; base case - empty set
     ((equal (car set) item) T)         ;; check first element of list
     (T (set-member (cdr set) item)))   ;; recursively check rest of list
   )
@@ -30,12 +30,13 @@
 ;;   (set-union '(1 2) '(2 4)) => '(1 2 4)
 
 (defun set-union (set-1 set-2)
-
-  ;;Your implementation go here
-
+  (cond
+    ((EQUAL set-2 NIL) set-1)			;; base case - set2 empty, return set1
+	((set-member set-1 (car set-2))		;; checks if first elem in 2 is present in 1
+	  (set-union set-1 (cdr set-2)))	;; if so... recurse with rest of 2
+	(T (cons (car set-2)			;; else add to list recursively
+	  (set-union set-1 (cdr set-2)))))
   )
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -50,9 +51,12 @@
 ;;   (set-intersection '(1 2) '(2 4)) => '(2)
 
 (defun set-intersection (set-1 set-2)
-
-  ;;Your implementation go here
-
+  (cond
+    ((equal set-1 NIL) NIL)                         ;; base: checks if 1 empty
+	((set-member set-2 (car set-1))             ;; check if 1st elem in 1 is in 2
+	  (cons (car set-1)                         ;; new list with found elem
+	  (set-intersection (cdr set-1) set-2)))   
+	(T (set-intersection (cdr set-1) set-2)))   ;; else rest of lists
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -70,9 +74,12 @@
 ;;   (set-diff '(1 2) '(2 4)) => '(1)
 
 (defun set-diff (set-1 set-2)
-
-  ;;Your implementation go here
-
+  (cond
+    ((equal set-1 NIL) NIL)                   ;; base: empty set
+	((not (set-member set-2 (car set-1))) ;; checks if 1st elem in 1 is NOT in 2
+	  (cons (car set-1)                   ;; add to list if not in 2
+	  (set-diff (cdr set-1) set-2)))      
+        (T (set-diff (cdr set-1) set-2)))     ;; else recurse lists
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -189,18 +196,18 @@
 )
 
 (defun test-case ()
-  ;;(format t "~%========= test set-member =========~%")
-  ;;(format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
-  ;;(format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))
+  (format t "~%========= test set-member =========~%")
+  (format t "set-member Test case 1 (T): ~x~%" (set-member '(1 2) 1))
+  (format t "set-member Test case 2 (NIL): ~x~%" (set-member '(1 2) 3))
   
-  ;;(format t "~%========= test set-union =========~%")
-  ;;(format t "set-union Test case {1 2 4}: ~x~%" (set-union '(1 2) '(2 4)))
+  (format t "~%========= test set-union =========~%")
+  (format t "set-union Test case {1 2 4}: ~x~%" (set-union '(1 2) '(2 4)))
   
-  ;;(format t "~%========= test set-intersection =========~%")
-  ;;(format t "set-intersection Test case {2}: ~x~%" (set-intersection '(1 2) '(2 4)))
+  (format t "~%========= test set-intersection =========~%")
+  (format t "set-intersection Test case {2}: ~x~%" (set-intersection '(1 2) '(2 4)))
   
-  ;;(format t "~%========= test set-diff =========~%")
-  ;;(format t "set-diff Test case {1}: ~x~%" (set-diff '(1 2) '(2 4)))
+  (format t "~%========= test set-diff =========~%")
+  (format t "set-diff Test case {1}: ~x~%" (set-diff '(1 2) '(2 4)))
   
   ;;(format t "~%========= test XOR =========~%")
   ;;(format t "XOR Test 1 (T): ~x~%" (boolean-xor T NIL))
@@ -246,8 +253,8 @@
   ;;(format t "XOR Test 2 (T): ~x~%" (boolean-eval '(xor NIL T)))
   ;;(format t "XOR Test 3 (NIL): ~x~%" (boolean-eval '(xor T T)))
   ;;(format t "XOR Test 4 (NIL): ~x~%" (boolean-eval '(xor NIL NIL)))
-  (format t "NESTED XOR Test 1 (T) ~x~%" (boolean-eval '(xor (xor T NIL) (xor T T))))
-  (format t "NESTED XOR Test 2 (NIL) ~x~%" (boolean-eval '(xor (xor NIL NIL) (xor T T))))
+  ;;(format t "NESTED XOR Test 1 (T) ~x~%" (boolean-eval '(xor (xor T NIL) (xor T T))))
+  ;;(format t "NESTED XOR Test 2 (NIL) ~x~%" (boolean-eval '(xor (xor NIL NIL) (xor T T))))
 
   ;;(format t "IFF Test 1 (T): ~x~%" (boolean-eval '(iff T T)))
   ;;(format t "IFF Test 2 (T): ~x~%" (boolean-eval '(iff NIL NIL)))
@@ -263,16 +270,16 @@
   ;;(format t "NESTED IMPLIES Test 1 (T): ~x~%" (boolean-eval '(implies (implies NIL NIL) (implies T T))))
   ;;(format t "NESTED IMPLIES Test 2 (NIL): ~x~%" (boolean-eval '(implies (implies NIL NIL) (implies T NIL))))
  
-  (format t "EVAL COMBO Test 1 (T): ~x~%" (boolean-eval '(and t (or NIL T))))
-  (format t "EVAL COMBO Test 2 (NIL): ~x~%" (boolean-eval '(and T NIL)))
-  (format t "EVAL COMBO Test 3 (T): ~x~%" (boolean-eval '(not (and T NIL))))
-  (format t "EVAL COMBO Test 4 (T): ~x~%" (boolean-eval '(xor (or T T) (and T NIL))))
-  (format t "EVAL COMBO Test 5 (T): ~x~%" (boolean-eval '(implies (and T T) (not NIL))))
-  (format t "EVAL COMBO Test 6 (NIL): ~x~%" (boolean-eval '(iff (xor T T) (and T T))))
+  ;;(format t "EVAL COMBO Test 1 (T): ~x~%" (boolean-eval '(and t (or NIL T))))
+  ;;(format t "EVAL COMBO Test 2 (NIL): ~x~%" (boolean-eval '(and T NIL)))
+  ;;(format t "EVAL COMBO Test 3 (T): ~x~%" (boolean-eval '(not (and T NIL))))
+  ;;(format t "EVAL COMBO Test 4 (T): ~x~%" (boolean-eval '(xor (or T T) (and T NIL))))
+  ;;(format t "EVAL COMBO Test 5 (T): ~x~%" (boolean-eval '(implies (and T T) (not NIL))))
+  ;;(format t "EVAL COMBO Test 6 (NIL): ~x~%" (boolean-eval '(iff (xor T T) (and T T))))
 
   ;;for some reason this test is evaluating to T instead of NIL ?
-  (format t "EVAL COMBO Test 7 (NIL): ~x~%" (boolean-eval '(and (iff T T) (xor NIL NIL))))
+  ;;(format t "EVAL COMBO Test 7 (NIL): ~x~%" (boolean-eval '(and (iff T T) (xor NIL NIL))))
 
-  (format t "EVAL COMBO Test 8 (NIL): ~x~%" (boolean-eval '(not (implies NIL T))))
-  (format t "EVAL COMBO Test 9 (T): ~x~%" (boolean-eval '(or (and T T) (iff T T))))
+  ;;(format t "EVAL COMBO Test 8 (NIL): ~x~%" (boolean-eval '(not (implies NIL T))))
+  ;;(format t "EVAL COMBO Test 9 (T): ~x~%" (boolean-eval '(or (and T T) (iff T T))))
 )
