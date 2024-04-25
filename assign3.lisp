@@ -31,7 +31,7 @@
 
 (defun set-union (set-1 set-2)
   (cond
-    ((EQUAL set-2 NIL) set-1)			;; base case - set2 empty, return set1
+    ((equal set-2 NIL) set-1)			;; base case - set2 empty, return set1
 	((set-member set-1 (car set-2))		;; checks if first elem in 2 is present in 1
 	  (set-union set-1 (cdr set-2)))	;; if so... recurse with rest of 2
 	(T (cons (car set-2)			;; else add to list recursively
