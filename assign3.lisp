@@ -113,6 +113,7 @@
 ;;  (boolean-implies nil nil) => t
 
 (defun boolean-implies (a b)
+  ;;there's only one case that evals to true ONE LINE!! anyway i'll look at that later
   (cond
     ((not a) T)   ;; if a = NIL, return T
     (b T)         ;; if a = T and B = T, return T
